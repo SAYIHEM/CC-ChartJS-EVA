@@ -10,29 +10,32 @@ using Dapper;
 
 namespace ChartJS_Eva.DataProvider
 {
-    public class DataProviderAPI : IDataProvider
+    public class DataProviderAPI : DataProvider
     {
-        public async Task<IEnumerable<T>> GetAll<T>() where T : Model
+
+        /// <summary>
+        /// Map for choosing correct data provider
+        /// </summary>
+        private Dictionary<Type, DataProvider> providers = new Dictionary<Type, DataProvider>();
+
+
+        public async Task<IEnumerable<T>> GetAll<T>() where T : Model => await providers[typeof(T)].GetAll<T>();
+
+        public async Task<T> Get<T>(int Id) where T : Model => await providers[typeof(T)].Get<T>(Id);
+
+        public async Task Insert<T>(T model) where T : Model => await providers[typeof(T)].Insert<T>(model);
+
+        public async Task Modify<T>(T model) where T : Model => await providers[typeof(T)].Modify<T>(model);
+
+        public async Task Delete<T>(int Id) where T : Model => await providers[typeof(T)].Delete<T>(Id);
+
+        private void InitProviders()
         {
-            throw new NotImplementedException();
+            // Adding initial providers here
+            providers.Add(typeof(TransactionHistory), new TransactionHistoryProvider());
         }
 
-        public async Task<T> Get<T>(int Id) where T : Model
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task Insert<T>(T model) where T : Model
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task Modify<T>(T model) where T : Model
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task Delete<T>(int Id) where T : Model
+        public void AddProvider(Type type)
         {
             throw new NotImplementedException();
         }

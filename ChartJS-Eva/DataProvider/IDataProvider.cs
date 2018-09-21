@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChartJS_Eva.DataProvider
 {
-    interface IDataProvider
+    public interface IDataProvider
     {
 
         Task<IEnumerable<T>> GetAll<T>() where T : Model;
@@ -19,5 +19,6 @@ namespace ChartJS_Eva.DataProvider
         Task Modify<T>(T model) where T : Model;
 
         Task Delete<T>(int Id) where T : Model;
+        Task<IEnumerable<T>> Get<T>();
     }
 }

@@ -10,7 +10,7 @@ using System.Web;
 
 namespace ChartJS_Eva.DataProvider
 {
-    public class TransactionHistoryProvider : DataProvider
+    public class TransactionHistoryProvider : SingleDataProvider
     {
 
         public async Task<IEnumerable<T>> GetAll<T>() where T : TransactionHistory
