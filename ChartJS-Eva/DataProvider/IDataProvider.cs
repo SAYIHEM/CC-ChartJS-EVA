@@ -14,9 +14,9 @@ namespace ChartJS_Eva.DataProvider
 
         Task<T> Get<T>(int Id) where T : Model;
 
-        Task Insert<T>(T product) where T : Model;
+        Task Insert<T>(T model) where T : Model;
 
-        Task Modify<T>(T product) where T : Model;
+        Task Modify<T>(T model) where T : Model;
 
         Task Delete<T>(int Id) where T : Model;
     }

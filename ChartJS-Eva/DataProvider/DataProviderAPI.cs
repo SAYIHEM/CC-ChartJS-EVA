@@ -1,27 +1,17 @@
-﻿using ChartJS_Eva.Models;
-using ChartJS_Eva.Setup;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using ChartJS_Eva.Models;
+using ChartJS_Eva.Setup;
+using Dapper;
 
 namespace ChartJS_Eva.DataProvider
 {
-    public abstract class DataProvider : IDataProvider
+    public class DataProviderAPI : IDataProvider
     {
-        /// <summary>
-        /// Used to connect to SQL databasse
-        /// </summary>
-        protected readonly string connectionString = Config.ConnectionString;
-
-
-        /// <summary>
-        /// Reference for SQL connection
-        /// </summary>
-        protected SqlConnection sqlConnection;
-
         public async Task<IEnumerable<T>> GetAll<T>() where T : Model
         {
             throw new NotImplementedException();
@@ -32,12 +22,12 @@ namespace ChartJS_Eva.DataProvider
             throw new NotImplementedException();
         }
 
-        public async Task Insert<T>(T product) where T : Model
+        public async Task Insert<T>(T model) where T : Model
         {
             throw new NotImplementedException();
         }
 
-        public async Task Modify<T>(T product) where T : Model
+        public async Task Modify<T>(T model) where T : Model
         {
             throw new NotImplementedException();
         }

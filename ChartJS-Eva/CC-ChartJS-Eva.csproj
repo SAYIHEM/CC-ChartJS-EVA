@@ -353,6 +353,8 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="DataProvider\DataProvider.cs" />
+    <Compile Include="DataProvider\TransactionHistoryProvider.cs" />
     <Compile Include="Setup\Config.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -361,9 +363,8 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DataProvider\DataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderAPI.cs" />
     <Compile Include="DataProvider\IDataProvider.cs" />
-    <Compile Include="DataProvider\ITransactionHistoryProvider.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
