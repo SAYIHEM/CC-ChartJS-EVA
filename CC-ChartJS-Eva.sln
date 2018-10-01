@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CC-ChartJS-Eva", "ChartJS-Eva\CC-ChartJS-Eva.csproj", "{2B479463-3240-4904-BEA6-16C05BD01503}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REST_API", "REST_API\REST_API.csproj", "{DFF4A03B-5125-4E3D-9317-B3B214FA9BFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B479463-3240-4904-BEA6-16C05BD01503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B479463-3240-4904-BEA6-16C05BD01503}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B479463-3240-4904-BEA6-16C05BD01503}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B479463-3240-4904-BEA6-16C05BD01503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF4A03B-5125-4E3D-9317-B3B214FA9BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF4A03B-5125-4E3D-9317-B3B214FA9BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF4A03B-5125-4E3D-9317-B3B214FA9BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF4A03B-5125-4E3D-9317-B3B214FA9BFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {42E38A3A-F410-4344-9EC8-9BCD6C961BC8}
+		SolutionGuid = {D699F579-3F69-43D2-90A6-A173373D7F8E}
 	EndGlobalSection
 EndGlobal
