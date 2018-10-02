@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using REST_API.DataProvider;
+using REST_API.DataProviders;
 using REST_API.Models;
 
 namespace REST_API.Controllers
@@ -17,6 +17,7 @@ namespace REST_API.Controllers
 
         public TransactionHistoriesController()
         {
+            // TODO: Fix inheritance structure of DataProvider
             dataProvider = new DataProviderAPI();
         }
 

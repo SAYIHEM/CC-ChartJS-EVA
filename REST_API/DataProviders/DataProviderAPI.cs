@@ -8,7 +8,7 @@ using REST_API.Models;
 using REST_API.Setup;
 using Dapper;
 
-namespace REST_API.DataProvider
+namespace REST_API.DataProviders
 {
     public class DataProviderAPI : DataProvider
     {
@@ -18,19 +18,23 @@ namespace REST_API.DataProvider
         /// </summary>
         private Dictionary<Type, DataProvider> providers = new Dictionary<Type, DataProvider>();
 
+        public DataProviderAPI()
+        {
+            InitProviders();
+        }
 
         /// TODO: Check if model is in providers map \\
 
 
-        public async Task<IEnumerable<T>> GetAll<T>() where T : Model => await providers[typeof(T)].GetAll<T>();
+        public async override Task<IEnumerable<T>> GetAll<T>() => await providers[typeof(T)].GetAll<T>();
 
-        public async Task<T> Get<T>(int Id) where T : Model => await providers[typeof(T)].Get<T>(Id);
+        public async override Task<T> Get<T>(int Id) => await providers[typeof(T)].Get<T>(Id);
 
-        public async Task Insert<T>(T model) where T : Model => await providers[typeof(T)].Insert<T>(model);
+        public async override Task Insert<T>(T model) => await providers[typeof(T)].Insert<T>(model);
 
-        public async Task Modify<T>(T model) where T : Model => await providers[typeof(T)].Modify<T>(model);
+        public async override Task Modify<T>(T model) => await providers[typeof(T)].Modify<T>(model);
 
-        public async Task Delete<T>(int Id) where T : Model => await providers[typeof(T)].Delete<T>(Id);
+        public async override Task Delete<T>(int Id) => await providers[typeof(T)].Delete<T>(Id);
 
         private void InitProviders()
         {

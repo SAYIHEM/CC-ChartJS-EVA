@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace REST_API.DataProvider
+namespace REST_API.DataProviders
 {
     public interface IDataProvider
     {

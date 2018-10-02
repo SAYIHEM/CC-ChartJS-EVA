@@ -7,14 +7,17 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using REST_API.Exceptions;
 
-namespace REST_API.DataProvider
+namespace REST_API.DataProviders
 {
     public class TransactionHistoryProvider : DataProvider
     {
 
-        public async Task<IEnumerable<T>> GetAll<T>() where T : TransactionHistory
+        public async override Task<IEnumerable<T>> GetAll<T>()
         {
+            if (typeof(T) != typeof(TransactionHistory)) throw new InvalidTypeParameterException();
+
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 await sqlConnection.OpenAsync();
@@ -25,8 +28,10 @@ namespace REST_API.DataProvider
             }
         }
 
-        public async Task<T> Get<T>(int Id) where T : TransactionHistory
+        public async override Task<T> Get<T>(int Id)
         {
+            if (typeof(T) != typeof(TransactionHistory)) throw new InvalidTypeParameterException();
+
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 await sqlConnection.OpenAsync();
@@ -37,6 +42,21 @@ namespace REST_API.DataProvider
                     dynamicParameters,
                     commandType: CommandType.Text);
             }
+        }
+
+        public override Task Insert<T>(T product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task Modify<T>(T product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task Delete<T>(int Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
