@@ -1,53 +1,50 @@
-﻿
-class TableBuilder {
+﻿class TableBuilder {
 
-    CreateTableFromJSON(json, container) {
+    constructor(json, container) {
+        this.json = json;
+        this.container = container;
+        this.table = document.createElement('table');
+        $(this.table).attr('class', 'table table-bordered');
 
-        let table = '';
+        this.createTableFromJSON();
+    }
+
+    createTableFromJSON() {
+
+        this._initTable();
+
+        $(this.table).dynatable({
+            features: {
+                paginate: true,
+            },
+            table: {
+                headRowSelector: 'thead',
+            },
+            dataset: {
+                records: this.json,
+                perPageDefault: 10,
+            },
+
+        });
+
+
+        // Append table to container
+        this.container.append(this.table)
+    }
+
+    _initTable() {
+        this.container.empty();
+
+        let thead = document.createElement('thead');
+        $(thead).attr('class', 'thead-light');
+        this.table.append(thead);
+
+        this.table.append(document.createElement('tbody'));
+
+        let json = this.json[0];
         $.each(json, (item, value) => {
-
-            
+            let header = '<th>' + item + '</th>';
+            $(thead).append(header);
         })
     }
 }
-
-/*
-        // EXTRACT VALUE FOR HTML HEADER.
-        // ('Book ID', 'Book Name', 'Category' and 'Price')
-        var col = [];
-        for (var i = 0; i < json.length; i++) {
-            for (var key in json[i]) {
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
-                }
-            }
-        }
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-        var tr = table.insertRow(-1);                   // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < json.length; i++) {
-
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = json[i][col[j]];
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        container.innerHTML = "";
-        container.appendChild(table);
-    }*/

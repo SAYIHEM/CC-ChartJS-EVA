@@ -25,6 +25,8 @@ namespace REST_API.DataProviders
 
         public abstract Task<T> Get<T>(int Id) where T : Model;
 
+        public abstract Task<IEnumerable<T>> GetRange<T>(int from, int to) where T : Model;
+
         public abstract Task Insert<T>(T product) where T : Model;
 
         public abstract Task Modify<T>(T product) where T : Model;

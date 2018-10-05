@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace REST_API.Models
 {
-    public partial class SalesOrderHeader
+    public partial class SalesOrderHeader : Model
     {
         public SalesOrderHeader()
         {

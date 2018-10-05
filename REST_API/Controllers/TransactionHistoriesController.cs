@@ -29,10 +29,17 @@ namespace REST_API.Controllers
         }
 
         // GET: api/TransactionHistories/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetTransactionHistory")]
         public async Task<TransactionHistory> Get(int id)
         {
             return await dataProvider.Get<TransactionHistory>(id);
+        }
+
+        // GET: api/TransactionHistories/5-10
+        [HttpGet("{from}-{to}", Name = "GetRangeTransactionHistory")]
+        public async Task<IEnumerable<TransactionHistory>> Get(int from, int to)
+        {
+            return await dataProvider.GetRange<TransactionHistory>(from, to);
         }
     }
 }

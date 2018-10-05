@@ -44,6 +44,25 @@ namespace REST_API.DataProviders
             }
         }
 
+        public async override Task<IEnumerable<T>> GetRange<T>(int from, int to)
+        {
+            if (typeof(T) != typeof(TransactionHistory)) throw new InvalidTypeParameterException();
+
+            using (var sqlConnection = new SqlConnection(connectionString))
+            {
+                await sqlConnection.OpenAsync();
+                var dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@FromTransactionID", from);
+                dynamicParameters.Add("@ToTransactionID", to);
+                return await sqlConnection.QueryAsync<T>(
+                    "SELECT * FROM [AdventureWorks2017].[Production].[TransactionHistory] " +
+                    "WHERE TransactionID " +
+                    "BETWEEN @FromTransactionID AND @ToTransactionID",
+                    dynamicParameters,
+                    commandType: CommandType.Text);
+            }
+        }
+
         public override Task Insert<T>(T product)
         {
             throw new NotImplementedException();
@@ -58,5 +77,7 @@ namespace REST_API.DataProviders
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

@@ -30,6 +30,8 @@ namespace REST_API.DataProviders
 
         public async override Task<T> Get<T>(int Id) => await providers[typeof(T)].Get<T>(Id);
 
+        public async override Task<IEnumerable<T>> GetRange<T>(int from, int to) => await providers[typeof(T)].GetRange<T>(from, to);
+
         public async override Task Insert<T>(T model) => await providers[typeof(T)].Insert<T>(model);
 
         public async override Task Modify<T>(T model) => await providers[typeof(T)].Modify<T>(model);
@@ -40,6 +42,7 @@ namespace REST_API.DataProviders
         {
             // Adding initial providers here
             providers.Add(typeof(TransactionHistory), new TransactionHistoryProvider());
+            providers.Add(typeof(SalesOrderHeader), new SalesOrderHeaderProvider());
         }
 
         public void AddProvider(Type type)
