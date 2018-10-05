@@ -13,33 +13,33 @@ namespace REST_API.Controllers
     [ApiController]
     public class SalesOrderDetailController : ControllerBase
     {
-        private IDataProvider dataProvider;
+        private IDataProvider SalesOrderDetailProvider;
 
         public SalesOrderDetailController()
         {
             // TODO: Fix inheritance structure of DataProvider
-            dataProvider = new DataProviderAPI();
+            SalesOrderDetailProvider = new DataProviderAPI();
         }
 
         // GET: api/SalesOrderDetail
         [HttpGet]
         public async Task<IEnumerable<SalesOrderDetail>> Get()
         {
-            return await dataProvider.GetAll<SalesOrderDetail>();
+            return await SalesOrderDetailProvider.GetAll<SalesOrderDetail>();
         }
 
         // GET: api/SalesOrderDetail/5
         [HttpGet("{id}", Name = "GetSalesOrderDetail")]
-        public async Task<SalesOrderDetail> Get(int id)
+        public async Task<IEnumerable<SalesOrderDetail>> Get(int id)
         {
-            return await dataProvider.Get<SalesOrderDetail>(id);
+            return await SalesOrderDetailProvider.GetOneMultiple<SalesOrderDetail>(id);
         }
 
         // GET: api/SalesOrderDetail/5-10
         [HttpGet("{from}-{to}", Name = "GetRangeSalesOrderDetail")]
         public async Task<IEnumerable<SalesOrderDetail>> Get(int from, int to)
         {
-            return await dataProvider.GetRange<SalesOrderDetail>(from, to);
+            return await SalesOrderDetailProvider.GetRange<SalesOrderDetail>(from, to);
         }
     }
 }

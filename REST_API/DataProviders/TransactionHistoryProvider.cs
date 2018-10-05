@@ -14,6 +14,11 @@ namespace REST_API.DataProviders
     public class TransactionHistoryProvider : DataProvider
     {
 
+        public async override Task<IEnumerable<T>> GetOneMultiple<T>(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async override Task<IEnumerable<T>> GetAll<T>()
         {
             if (typeof(T) != typeof(TransactionHistory)) throw new InvalidTypeParameterException();

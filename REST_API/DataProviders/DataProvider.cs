@@ -23,6 +23,8 @@ namespace REST_API.DataProviders
 
         public abstract Task<IEnumerable<T>> GetAll<T>() where T : Model;
 
+        public abstract Task<IEnumerable<T>> GetOneMultiple<T>(int id) where T : Model;
+
         public abstract Task<T> Get<T>(int Id) where T : Model;
 
         public abstract Task<IEnumerable<T>> GetRange<T>(int from, int to) where T : Model;

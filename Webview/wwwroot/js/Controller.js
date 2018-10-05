@@ -2,8 +2,8 @@
 
     constructor() {
         this.serverURL = "http://localhost:50658/api/";
-        //this.apiURL = $('textarea#request_url').val();
-        this.apiURL = "SalesOrderHeader/50000-50005";
+        this.apiURL = $('textarea#request_url').val();
+        //this.apiURL = "SalesOrderHeader/50000-50005";
 
         this._init();
     }

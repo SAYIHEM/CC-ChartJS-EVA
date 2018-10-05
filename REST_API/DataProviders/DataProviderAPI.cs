@@ -25,6 +25,7 @@ namespace REST_API.DataProviders
 
         /// TODO: Check if model is in providers map \\
 
+        public async override Task<IEnumerable<T>> GetOneMultiple<T>(int id) => await providers[typeof(T)].GetOneMultiple<T>(id);
 
         public async override Task<IEnumerable<T>> GetAll<T>() => await providers[typeof(T)].GetAll<T>();
 

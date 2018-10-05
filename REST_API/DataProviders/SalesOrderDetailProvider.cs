@@ -17,7 +17,15 @@ namespace REST_API.DataProviders
             throw new NotImplementedException();
         }
 
+        //
+        // GET´s BY SalesOrderID, NOT by SalesOrderDetailID !
+        //
         public async override Task<T> Get<T>(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async override Task<IEnumerable<T>> GetOneMultiple<T>(int Id)
         {
             if (typeof(T) != typeof(SalesOrderDetail)) throw new InvalidTypeParameterException();
 
@@ -25,9 +33,9 @@ namespace REST_API.DataProviders
             {
                 await sqlConnection.OpenAsync();
                 var dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("@SalesOrderDetailID", Id);
-                return await sqlConnection.QuerySingleOrDefaultAsync<T>(
-                    "SELECT * FROM [AdventureWorks2017].[Sales].[SalesOrderDetail] WHERE SalesOrderDetailID=@SalesOrderDetailID",
+                dynamicParameters.Add("@SalesOrderID", Id);
+                return await sqlConnection.QueryAsync<T>(
+                    "SELECT * FROM [AdventureWorks2017].[Sales].[SalesOrderDetail] WHERE SalesOrderID=@SalesOrderID",
                     dynamicParameters,
                     commandType: CommandType.Text);
             }
@@ -46,7 +54,9 @@ namespace REST_API.DataProviders
                     commandType: CommandType.Text);
             }
         }
-
+        //
+        // GET´s BY SalesOrderID, NOT by SalesOrderDetailID !
+        //
         public async override Task<IEnumerable<T>> GetRange<T>(int from, int to)
         {
             if (typeof(T) != typeof(SalesOrderDetail)) throw new InvalidTypeParameterException();
@@ -59,7 +69,7 @@ namespace REST_API.DataProviders
                 dynamicParameters.Add("@ToSalesOrderDetailID", to);
                 return await sqlConnection.QueryAsync<T>(
                     "SELECT * FROM [AdventureWorks2017].[Sales].[SalesOrderDetail] " +
-                    "WHERE SalesOrderDetailID " +
+                    "WHERE SalesOrderID " +
                     "BETWEEN @FromSalesOrderDetailID AND @ToSalesOrderDetailID",
                     dynamicParameters,
                     commandType: CommandType.Text);

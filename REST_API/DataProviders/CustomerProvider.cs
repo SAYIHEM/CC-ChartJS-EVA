@@ -17,6 +17,11 @@ namespace REST_API.DataProviders
             throw new NotImplementedException();
         }
 
+        public async override Task<IEnumerable<T>> GetOneMultiple<T>(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async override Task<T> Get<T>(int Id)
         {
             if (typeof(T) != typeof(Customer)) throw new InvalidTypeParameterException();

@@ -23,9 +23,10 @@
     renderPieChart1() {
 
         // Filter JSON
+        console.log(this.json);
         $.each(this.json, (no, object) => {
             $.each(object, (item, value) => {
-                if (!(item === 'customerId' || item === 'totalDue')) {
+                if (!(item === 'customerId' || item === 'totalDue' || item === 'salesOrderId')) {
                     delete object[item];
                 }
             });
@@ -33,7 +34,9 @@
 
         let customers = new Array(0);
         let totalDues = new Array(0);
+        let ID = new Array(0);
         $.each(this.json, (no, obj) => {
+            ID.push(obj['salesOrderId']);
             customers.push(obj['customerId']);
             totalDues.push(obj['totalDue']);
         });
@@ -61,7 +64,25 @@
         $("#pie_chart").click(
             function (evt) {
                 var activePoints = pieChart.getElementsAtEvent(evt);
-                console.log(activePoints);
+                let link = 'http://localhost:50658/api/SalesOrderDetail/' + ID[activePoints[0]._index];
+                window.open(link, '_blank');
+
+                /*$.ajax({
+                    type: 'GET',
+                    url: link,
+                    dataType: 'json',
+                    success: (data) => {
+
+                        // Check if empty
+                        if ($.isEmptyObject(data)) {
+                            alert("No data returned.");
+                            return;
+                        }
+                        alert(JSON.stringify(data));
+
+                    }
+                });*/
+
                 /*var url = "http://example.com/?label=" + activePoints[0].label + "&value=" + activePoints[0].value;
                 alert(url);*/
             }
