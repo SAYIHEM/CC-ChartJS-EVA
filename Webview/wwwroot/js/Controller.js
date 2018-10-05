@@ -23,15 +23,6 @@
                     return;
                 }
 
-                // Filter JSON
-                $.each(data, (no, object) => {
-                    $.each(object, (item, value) => {
-                        if (!(item === 'customerId' || item === 'totalDue')) {
-                            delete object[item];             
-                        }
-                    });
-                });
-
                 // Build Table
                 let builder = new TableBuilder(data, $('#TableView'));
 

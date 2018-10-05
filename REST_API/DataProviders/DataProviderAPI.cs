@@ -43,6 +43,8 @@ namespace REST_API.DataProviders
             // Adding initial providers here
             providers.Add(typeof(TransactionHistory), new TransactionHistoryProvider());
             providers.Add(typeof(SalesOrderHeader), new SalesOrderHeaderProvider());
+            providers.Add(typeof(SalesOrderDetail), new SalesOrderDetailProvider());
+            providers.Add(typeof(Customer), new CustomerProvider());
         }
 
         public void AddProvider(Type type)

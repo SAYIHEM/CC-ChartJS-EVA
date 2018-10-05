@@ -22,6 +22,15 @@
 
     renderPieChart1() {
 
+        // Filter JSON
+        $.each(this.json, (no, object) => {
+            $.each(object, (item, value) => {
+                if (!(item === 'customerId' || item === 'totalDue')) {
+                    delete object[item];
+                }
+            });
+        });
+
         let customers = new Array(0);
         let totalDues = new Array(0);
         $.each(this.json, (no, obj) => {
